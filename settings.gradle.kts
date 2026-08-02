@@ -12,5 +12,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "watchpee"
+rootProject.name = "Intermission"
 include(":app")

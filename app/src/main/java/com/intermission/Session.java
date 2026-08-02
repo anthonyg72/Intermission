@@ -1,4 +1,4 @@
-package com.watchpee;
+package com.intermission;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public final class Session {
 
-    private static final String PREFS = "watchpee";
+    private static final String PREFS = "intermission";
     private static final String KEY_ANCHOR = "anchor";
     private static final String KEY_SPEEDUP = "speedup";
     private static final int REQUEST_BASE = 8100;
@@ -109,7 +109,7 @@ public final class Session {
 
     private static PendingIntent pending(Context c, int index, Config.Event e) {
         Intent i = new Intent(c, AlertReceiver.class)
-                .setAction("com.watchpee.ALERT." + index)
+                .setAction("com.intermission.ALERT." + index)
                 .putExtra(AlertReceiver.EXTRA_KIND, e.kind.name());
         return PendingIntent.getBroadcast(
                 c, REQUEST_BASE + index, i,

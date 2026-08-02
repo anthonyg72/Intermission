@@ -1,4 +1,4 @@
-package com.watchpee;
+package com.intermission;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -19,7 +19,7 @@ public class AlertReceiver extends BroadcastReceiver {
         } catch (Exception e) {
             return;
         }
-        Log.i("watchpee", "alert " + kind);
+        Log.i("intermission", "alert " + kind);
         Buzzer.buzz(context, kind);
     }
 }

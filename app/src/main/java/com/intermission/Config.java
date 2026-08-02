@@ -1,4 +1,4 @@
-package com.watchpee;
+package com.intermission;
 
 import java.util.ArrayList;
 import java.util.List;

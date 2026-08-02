@@ -1,4 +1,4 @@
-package com.watchpee;
+package com.intermission;
 
 import android.app.Activity;
 import android.os.Bundle;

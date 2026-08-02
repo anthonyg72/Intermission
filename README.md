@@ -5,10 +5,6 @@ it never lights up, never makes a sound, and shows no notification.
 
 Built for a Pixel Watch 4 (Wear OS, API 37).
 
-> The repo and package are still `watchpee` — the app was renamed to
-> Intermission, but the package id is deliberately unchanged so new builds
-> install over the existing one instead of alongside it.
-
 ## Using it tonight
 
 1. Open **Intermission** on the watch. It shows `READY`.
@@ -52,7 +48,7 @@ leave the house.
 
 ## Reusing it for another movie
 
-Edit [Config.java](app/src/main/java/com/watchpee/Config.java) — `MOVIE_TITLE`,
+Edit [Config.java](app/src/main/java/com/intermission/Config.java) — `MOVIE_TITLE`,
 `RUNTIME_MIN`, and the `WINDOWS` array. Nothing else needs to change.
 
 ## Building from a fresh clone
@@ -78,7 +74,7 @@ adb connect 192.168.0.29:<debug-port>
 
 gradle :app:assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
-adb shell am start -n com.watchpee/.MainActivity
+adb shell am start -n com.intermission/.MainActivity
 ```
 
 ## Design notes
@@ -109,6 +105,13 @@ Real Pixel Watch 4, not an emulator:
 - Arming schedules the correct first alarm (`+18m58s`, the 19:00 pre-warning).
 - `STOP` cancels all pending alarms.
 
-**Not verified:** behavior in Theater Mode specifically. `USAGE_ALARM` should
-carry through, but that's reasoning, not evidence — worth a test run with Theater
-Mode on before you rely on it.
+## Do NOT use Theater Mode
+
+**Theater Mode suppresses the alerts.** Tested on the watch — nothing buzzes.
+`USAGE_ALARM` attributes carry through Do Not Disturb but not Theater Mode,
+which cuts haptics outright.
+
+You don't need it anyway: this app never wakes the screen on its own. The only
+thing Theater Mode buys you in a cinema is stopping tilt-to-wake from lighting
+the display when you raise your arm — and you can get that without losing the
+alerts by turning off **Settings → Display → Tilt to wake** instead.

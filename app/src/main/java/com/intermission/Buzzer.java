@@ -1,4 +1,4 @@
-package com.watchpee;
+package com.intermission;
 
 import android.content.Context;
 import android.os.VibrationAttributes;

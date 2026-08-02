@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.watchpee"
+    namespace = "com.intermission"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.watchpee"
+        applicationId = "com.intermission"
         minSdk = 33
         targetSdk = 37
         versionCode = 1
