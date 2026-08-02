@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Night-vision palette: black ground, red text, dark buttons. Even at full
+     screen brightness this must not be a flashlight in a dark theater. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#9E3A30"
+            android:gravity="center"
+            android:text="Intermission" />
+
+        <TextView
+            android:id="@+id/tvMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            android:textColor="#E8503C"
+            android:gravity="center"
+            android:text="--:--" />
+
+        <TextView
+            android:id="@+id/tvSub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="16sp"
+            android:textColor="#C4483B"
+            android:gravity="center"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnArm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/btn_dark"
+            android:textColor="#E8503C"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:letterSpacing="0"
+            android:stateListAnimator="@null"
+            android:text="MOVIE STARTS NOW" />
+
+        <LinearLayout
+            android:id="@+id/rowNudge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:background="@drawable/btn_dark"
+                android:textColor="#D14A3B"
+                android:textSize="16sp"
+                android:stateListAnimator="@null"
+                android:text="-30s" />
+
+            <Button
+                android:id="@+id/btnPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:minWidth="0dp"
+                android:background="@drawable/btn_dark"
+                android:textColor="#D14A3B"
+                android:textSize="16sp"
+                android:stateListAnimator="@null"
+                android:text="+30s" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSecondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minWidth="0dp"
+            android:background="@drawable/btn_dark"
+            android:textColor="#B04236"
+            android:textSize="14sp"
+            android:stateListAnimator="@null"
+            android:text="test run" />
+    </LinearLayout>
+</FrameLayout>
