@@ -1,4 +1,6 @@
-# watchpee — build prompt
+# Intermission — build prompt
+
+*The original brief this was built from, kept as written.*
 
 Build me a Wear OS app for my Pixel Watch that buzzes my wrist at the safe
 bathroom-break windows during *Spider-Man: Brand New Day*. I'm seeing it
