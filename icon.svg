@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Intermission app icon: a pause symbol built from two strips of film.
+     Pure rects, so Inkscape keeps them editable as rectangles rather than paths.
+     All artwork sits inside the circle inscribed in the canvas, so a round
+     Wear OS launcher mask cannot clip it. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect id="bg" x="0" y="0" width="1024" height="1024" fill="#000000"/>
+  <g id="strip-left">
+    <rect x="247" y="180" width="220" height="664" rx="28" fill="#E8503C"/>
+    <rect x="273" y="220" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="273" y="326" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="273" y="432" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="273" y="538" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="273" y="644" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="273" y="750" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="220" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="326" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="432" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="538" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="644" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="407" y="750" width="34" height="52" rx="14" fill="#000000"/>
+  </g>
+  <g id="strip-right">
+    <rect x="557" y="180" width="220" height="664" rx="28" fill="#E8503C"/>
+    <rect x="583" y="220" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="583" y="326" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="583" y="432" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="583" y="538" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="583" y="644" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="583" y="750" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="220" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="326" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="432" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="538" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="644" width="34" height="52" rx="14" fill="#000000"/>
+    <rect x="717" y="750" width="34" height="52" rx="14" fill="#000000"/>
+  </g>
+</svg>

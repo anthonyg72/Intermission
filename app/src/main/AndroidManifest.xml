@@ -10,7 +10,8 @@
 
     <application
         android:label="Intermission"
-        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
         <activity

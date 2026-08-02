@@ -65,6 +65,23 @@ The `TEST RUN` button on the READY screen compresses all 145 minutes by 60× and
 fires all nine alerts in about 100 seconds. Use it to confirm haptics before you
 leave the house.
 
+## The icon
+
+Two strips of film forming a pause symbol — red on black, same palette as the app.
+
+[icon.svg](icon.svg) at the repo root is the design source, drawn as plain
+rectangles so it stays editable in Inkscape. Two things are generated from it:
+
+- `res/drawable/ic_launcher_foreground.xml` — the adaptive-icon foreground, a
+  vector drawable. Content is fitted inside the 66dp safe *circle* (not the safe
+  square), so the round Wear OS launcher mask can't clip the strips. The sprocket
+  holes are `evenOdd` subpaths, so they punch through to the background layer
+  rather than being painted black.
+- `res/mipmap-*dpi/ic_launcher.png` — legacy fallbacks at 48/72/96/144/192.
+
+At launcher size the holes close up and it reads as a plain pause symbol, which
+is the intended degradation.
+
 ## Reusing it for another movie
 
 Edit [Config.java](app/src/main/java/com/intermission/Config.java) — `MOVIE_TITLE`,
