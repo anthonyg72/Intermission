@@ -1,104 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Night-vision palette: black ground, red text, dark buttons. Even at full
-     screen brightness this must not be a flashlight in a dark theater. -->
+     screen brightness this must not be a flashlight in a dark theater.
+
+     Three stacked full-screen pages inside a snapping pager. Page 1 is the
+     countdown, page 2 the ±30s nudge, page 3 the stop. Pages 2 and 3 only
+     exist while armed. Putting STOP two deliberate swipes away is the point:
+     it can't be reached by accident mid-movie. -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000">
 
-    <LinearLayout
+    <com.intermission.PagerScrollView
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#9E3A30"
-            android:gravity="center"
-            android:text="Intermission" />
-
-        <TextView
-            android:id="@+id/tvMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="42sp"
-            android:textStyle="bold"
-            android:textColor="#E8503C"
-            android:gravity="center"
-            android:text="--:--" />
-
-        <TextView
-            android:id="@+id/tvSub"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:textSize="16sp"
-            android:textColor="#C4483B"
-            android:gravity="center"
-            android:text="" />
-
-        <Button
-            android:id="@+id/btnArm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/btn_dark"
-            android:textColor="#E8503C"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:letterSpacing="0"
-            android:stateListAnimator="@null"
-            android:text="MOVIE STARTS NOW" />
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/rowNudge"
-            android:layout_width="wrap_content"
+            android:id="@+id/pages"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnMinus"
-                android:layout_width="wrap_content"
+            <!-- ============ PAGE 1: countdown ============ -->
+            <LinearLayout
+                android:id="@+id/page1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minWidth="0dp"
-                android:background="@drawable/btn_dark"
-                android:textColor="#D14A3B"
-                android:textSize="16sp"
-                android:stateListAnimator="@null"
-                android:text="-30s" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp">
 
-            <Button
-                android:id="@+id/btnPlus"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#9E3A30"
+                    android:gravity="center"
+                    android:text="Intermission" />
+
+                <TextView
+                    android:id="@+id/tvMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="42sp"
+                    android:textStyle="bold"
+                    android:textColor="#E8503C"
+                    android:gravity="center"
+                    android:text="--:--" />
+
+                <TextView
+                    android:id="@+id/tvSub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textSize="16sp"
+                    android:textColor="#C4483B"
+                    android:gravity="center"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/btnArm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/btn_dark"
+                    android:textColor="#E8503C"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0"
+                    android:stateListAnimator="@null"
+                    android:text="MOVIE STARTS NOW" />
+
+                <Button
+                    android:id="@+id/btnSecondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:minWidth="0dp"
+                    android:background="@drawable/btn_dark"
+                    android:textColor="#B04236"
+                    android:textSize="14sp"
+                    android:stateListAnimator="@null"
+                    android:text="test run" />
+
+                <TextView
+                    android:id="@+id/tvHintDown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:textColor="#7A2C24"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="swipe up to adjust" />
+            </LinearLayout>
+
+            <!-- ============ PAGE 2: nudge the anchor ============ -->
+            <LinearLayout
+                android:id="@+id/page2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:minWidth="0dp"
-                android:background="@drawable/btn_dark"
-                android:textColor="#D14A3B"
-                android:textSize="16sp"
-                android:stateListAnimator="@null"
-                android:text="+30s" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#9E3A30"
+                    android:gravity="center"
+                    android:text="ADJUST START" />
+
+                <TextView
+                    android:id="@+id/tvElapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="#E8503C"
+                    android:gravity="center"
+                    android:text="0:00" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#8E332A"
+                    android:gravity="center"
+                    android:text="elapsed" />
+
+                <LinearLayout
+                    android:id="@+id/rowNudge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnMinus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="0dp"
+                        android:background="@drawable/btn_dark"
+                        android:textColor="#D14A3B"
+                        android:textSize="18sp"
+                        android:stateListAnimator="@null"
+                        android:text="-30s" />
+
+                    <Button
+                        android:id="@+id/btnPlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:minWidth="0dp"
+                        android:background="@drawable/btn_dark"
+                        android:textColor="#D14A3B"
+                        android:textSize="18sp"
+                        android:stateListAnimator="@null"
+                        android:text="+30s" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp"
+                    android:textColor="#7A2C24"
+                    android:gravity="center"
+                    android:text="tapped late? -30s" />
+            </LinearLayout>
+
+            <!-- ============ PAGE 3: stop, behind a confirmation ============ -->
+            <LinearLayout
+                android:id="@+id/page3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvStopTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#9E3A30"
+                    android:gravity="center"
+                    android:text="END SESSION" />
+
+                <LinearLayout
+                    android:id="@+id/groupStopIdle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnStop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/btn_dark"
+                        android:textColor="#E8503C"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0"
+                        android:stateListAnimator="@null"
+                        android:text="STOP" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="12sp"
+                        android:textColor="#7A2C24"
+                        android:gravity="center"
+                        android:text="cancels all remaining buzzes" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/groupStopConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="14sp"
+                        android:textColor="#C4483B"
+                        android:gravity="center"
+                        android:text="Cancel all remaining buzzes?" />
+
+                    <Button
+                        android:id="@+id/btnStopConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/btn_dark"
+                        android:textColor="#E8503C"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0"
+                        android:stateListAnimator="@null"
+                        android:text="YES, STOP" />
+
+                    <Button
+                        android:id="@+id/btnStopCancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/btn_dark"
+                        android:textColor="#B04236"
+                        android:textSize="16sp"
+                        android:letterSpacing="0"
+                        android:stateListAnimator="@null"
+                        android:text="keep going" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+    </com.intermission.PagerScrollView>
 
-        <Button
-            android:id="@+id/btnSecondary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:minWidth="0dp"
-            android:background="@drawable/btn_dark"
-            android:textColor="#B04236"
-            android:textSize="14sp"
-            android:stateListAnimator="@null"
-            android:text="test run" />
+    <!-- Page indicator: three dim dots down the right edge. -->
+    <LinearLayout
+        android:id="@+id/dots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginRight="6dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/dot1"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/dot" />
+
+        <View
+            android:id="@+id/dot2"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/dot" />
+
+        <View
+            android:id="@+id/dot3"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/dot" />
     </LinearLayout>
 </FrameLayout>

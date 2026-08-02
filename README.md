@@ -14,10 +14,29 @@ Built for a Pixel Watch 4 (Wear OS, API 37).
 
 Everything is scheduled off that tap, so previews running long doesn't matter.
 
-If you tapped late, hit **`-30s`** (means "the movie actually started 30s earlier
-than I tapped"). **`+30s`** is the opposite. The whole schedule re-shifts.
+## The three screens
 
-**`STOP`** disarms and cancels every pending alert.
+Once armed, the app is three full screens stacked vertically. Swipe up/down or
+turn the crown; the dots on the right edge show where you are. One swipe moves
+exactly one screen, so nothing can carry you through to `STOP` by accident.
+
+| # | Screen | What's on it |
+|---|---|---|
+| 1 | Countdown | Elapsed time, countdown to the next window. No buttons. |
+| 2 | `ADJUST START` | `-30s` / `+30s` and a live elapsed readout. |
+| 3 | `END SESSION` | `STOP`, behind a confirmation. |
+
+Before you arm it, screens 2 and 3 don't exist — there's nothing to adjust or
+stop, and swiping does nothing.
+
+**Nudging.** `-30s` and `+30s` move *the start instant*, not the clock. Tapped
+late, so the movie really started before you hit the button? Press **`-30s`** —
+the elapsed readout jumps forward 30s and all nine alerts re-shift with it.
+
+**Stopping takes two deliberate taps, two screens in.** `STOP` swaps itself for
+`YES, STOP` / `keep going`; only `YES, STOP` cancels the alerts. The confirmation
+gives up after 8 seconds, and swiping away or leaving the app cancels it too — so
+a stray tap in the dark can't end the session.
 
 ## What the buzzes mean
 
@@ -42,7 +61,7 @@ The app displays `SIT TIGHT` once you're past it.
 
 ## Test run
 
-The `test run` button on the READY screen compresses all 145 minutes by 60× and
+The `TEST RUN` button on the READY screen compresses all 145 minutes by 60× and
 fires all nine alerts in about 100 seconds. Use it to confirm haptics before you
 leave the house.
 
@@ -90,7 +109,17 @@ the screen.
 swallowed by Do Not Disturb. Alarm usage is what carries through.
 
 **Zero dependencies.** Plain Java and framework Views — no Kotlin, no Compose, no
-androidx. Nothing to resolve, fast builds.
+androidx. Nothing to resolve, fast builds. The pager is
+[PagerScrollView.java](app/src/main/java/com/intermission/PagerScrollView.java),
+~130 lines of snapping `ScrollView`, rather than a ViewPager2 dependency.
+
+**Paging is vertical.** On Wear OS a horizontal right-swipe is the system
+swipe-to-dismiss gesture, so a horizontal pager would fight it. Vertical is also
+what the rotating crown drives.
+
+**One gesture, one page.** A fling is clamped to ±1 page from wherever the finger
+went down. Without that clamp a hard flick travels the drag *and* the fling —
+measured on the watch, that jumped screen 1 straight to `STOP`.
 
 **Night-vision palette.** Black ground, red text, near-black buttons.
 
@@ -104,6 +133,15 @@ Real Pixel Watch 4, not an emulator:
   by hand in Settings.
 - Arming schedules the correct first alarm (`+18m58s`, the 19:00 pre-warning).
 - `STOP` cancels all pending alarms.
+
+Re-verified after the three-screen change:
+
+- One swipe moves exactly one screen, both directions, and the dots track it.
+- `STOP` → `YES, STOP` cancels all nine alarms (`dumpsys alarm` shows nine
+  `alarm_cancelled` records) and drops back to `READY`. `keep going` leaves all
+  nine scheduled.
+- Screens 2 and 3 are unreachable while disarmed.
+- `-30s` moved elapsed 4:27 → 4:59 and `+30s` moved it back to 4:31.
 
 ## Do NOT use Theater Mode
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Page indicator dot. Alpha is set per-dot in code; the color stays dim. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#B04236" />
+    <size android:width="5dp" android:height="5dp" />
+</shape>
