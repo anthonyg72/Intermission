@@ -55,8 +55,11 @@ public final class Session {
     /** Shift the anchor by deltaSec of movie time (negative = movie started earlier than I tapped). */
     public static void nudge(Context c, int deltaSec) {
         if (!isArmed(c)) return;
+        // deltaSec is a shift of the start instant itself: -30 moves the anchor 30s
+        // earlier, which makes elapsed jump forward by 30s. Sign matters -- getting it
+        // backwards moves every one of the nine alerts a full minute the wrong way.
         long shiftMs = (long) deltaSec * 1000L / speedup(c);
-        prefs(c).edit().putLong(KEY_ANCHOR, anchor(c) - shiftMs).apply();
+        prefs(c).edit().putLong(KEY_ANCHOR, anchor(c) + shiftMs).apply();
         schedule(c);
     }
 
